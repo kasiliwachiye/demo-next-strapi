@@ -3,7 +3,7 @@ import Image from "next/image";
 export const Card = ({
   category,
   title,
-  description,
+  summary,
   imageSrc,
   learnMoreLink,
   likes,
@@ -20,16 +20,14 @@ export const Card = ({
           height={400}
         />
         <div className="p-6">
-          <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-            {category}
-          </h2>
-          <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
+          <h2 className="text-lg title-font font-medium text-gray-400 mb-1">
             {title}
-          </h1>
-          <p className="leading-relaxed mb-3">{description}</p>
+          </h2>
+          <h1 className="text-sm font-medium text-gray-700">{category}</h1>
+          <p className="leading-relaxed mb-3">{summary}</p>
           <div className="flex items-center flex-wrap">
             <a
-              className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
+              className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 hover:cursor-pointer"
               href={learnMoreLink}
             >
               Learn More
