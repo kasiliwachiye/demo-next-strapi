@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import StarRating from "../../utils/starRating";
 
 export const Card = ({
   projectRating,
@@ -20,7 +21,7 @@ export const Card = ({
         />
         <div className="p-6">
           <h2 className="text-lg text-gray-400">{projectName}</h2>
-          <h1 className="text-sm text-gray-700 font-bold mb-1">{projectRating}</h1>
+          <StarRating rating={projectRating} />
           <p className="mb-3 text-xs">{projectSummary}</p>
           <div className="flex items-center flex-wrap">
             <Link

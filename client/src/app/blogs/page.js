@@ -1,5 +1,9 @@
 const Blogs = () => {
-  return <h1>BLOGS GO HERE</h1>;
+  return (
+    <div className="min-h-screen flex flex-1 justify-center items-center">
+      BLOGS GO HERE
+    </div>
+  );
 };
 
 export default Blogs;
