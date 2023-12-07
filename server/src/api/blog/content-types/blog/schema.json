@@ -51,7 +51,7 @@
         }
       },
       "type": "string",
-      "maxLength": 255,
+      "maxLength": 500,
       "required": true
     },
     "articleThumbnail": {
@@ -97,7 +97,18 @@
       },
       "type": "string",
       "required": true,
-      "maxLength": 255
+      "maxLength": 255,
+      "unique": true
+    },
+    "isFeatured": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

@@ -7,8 +7,6 @@ export const Card = ({
   projectSummary,
   projectImage,
   projectLink,
-  likes,
-  comments,
 }) => {
   return (
     <div className="p-4 md:w-1/3">

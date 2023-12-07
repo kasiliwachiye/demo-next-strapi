@@ -1,8 +1,16 @@
 import { Card } from "@/components/card";
-import Image from "next/image";
 import Link from "next/link";
+import formatDate from "../../utils/formatDate";
+import fetchBlogs from "../../helpers/fetch-blogs";
 
-export default function Home() {
+const Home = async () => {
+  const [featuredBlogs, blogs] = await Promise.all([
+    await fetchBlogs(`filters[isFeatured][$eq]=true`),
+    await fetchBlogs(`filters[isFeatured][$eq]=false`),
+  ]);
+
+  console.log(featuredBlogs.data);
+
   return (
     <div className="">
       <div
@@ -86,195 +94,81 @@ export default function Home() {
             Optiven in the news
           </h1>
           <div className="flex flex-wrap -m-4">
-            <div className="p-4 lg:w-1/3 transition-transform duration-500 ease-in-out transform hover:scale-105">
-              <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
-                <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                  CATEGORY
-                </h2>
-                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
-                  Massive Tree Planting , Ocean View Ridge Vipingo
-                </h1>
-                <p className="text-xs mb-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  nec sem eget justo varius posuere fringilla vel mi. Nullam
-                  congue purus ut nunc tincidunt maximus. Curabitur sed
-                  vestibulum ante.
-                </p>
-                <a className="text-green-600 inline-flex items-center cursor-pointer">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+            {featuredBlogs.data.map((item) => (
+              <div
+                className="p-4 lg:w-1/3 transition-transform duration-500 ease-in-out transform hover:scale-105"
+                key={item.id}
+              >
+                <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                  <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                    {item.attributes.category}
+                  </h2>
+                  <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
+                    {item.attributes.title}
+                  </h1>
+                  <p className="text-xs mb-3">
+                    {item.attributes.articleSummary}
+                  </p>
+                  <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                    {formatDate(item.attributes.publishedAt)}
+                  </h2>
+                  <Link
+                    className="text-green-600 inline-flex items-center cursor-pointer"
+                    href={`/blogs/${item.attributes.slug}`}
                   >
-                    <path d="M5 12h14" />
-                    <path d="M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-                <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                  <span className="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                    Learn More
                     <svg
-                      className="w-4 h-4 mr-1"
+                      className="w-4 h-4 ml-2"
+                      viewBox="0 0 24 24"
                       stroke="currentColor"
                       strokeWidth={2}
                       fill="none"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      viewBox="0 0 24 24"
                     >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                      <circle cx={12} cy={12} r={3} />
+                      <path d="M5 12h14" />
+                      <path d="M12 5l7 7-7 7" />
                     </svg>
-                    {Math.ceil(Math.random() * 1000)}
-                  </span>
-                  <span className="text-gray-400 inline-flex items-center leading-none text-sm">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
-                    </svg>
-                    {Math.ceil(Math.random() * 1000)}
-                  </span>
+                  </Link>
+                  <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+                    <span className="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx={12} cy={12} r={3} />
+                      </svg>
+                      {Math.ceil(Math.random() * 1000)}
+                    </span>
+                    <span className="text-gray-400 inline-flex items-center leading-none text-sm">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
+                      </svg>
+                      {Math.ceil(Math.random() * 1000)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="p-4 lg:w-1/3 transition-transform duration-500 ease-in-out transform hover:scale-105">
-              <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
-                <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                  CATEGORY
-                </h2>
-                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
-                  Optiven FC Win First Match
-                </h1>
-                <p className="text-xs mb-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  nec sem eget justo varius posuere fringilla vel mi. Nullam
-                  congue purus ut nunc tincidunt maximus. Curabitur sed
-                  vestibulum ante.
-                </p>
-                <a className="text-green-600 inline-flex items-center cursor-pointer">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-                <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                  <span className="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                      <circle cx={12} cy={12} r={3} />
-                    </svg>
-                    {Math.ceil(Math.random() * 1000)}
-                  </span>
-                  <span className="text-gray-400 inline-flex items-center leading-none text-sm">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
-                    </svg>
-                    {Math.ceil(Math.random() * 1000)}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 transition-transform duration-500 ease-in-out transform hover:scale-105">
-              <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
-                <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                  CATEGORY
-                </h2>
-                <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
-                  Investment Over Coffee - Nairobi Edition
-                </h1>
-                <p className="text-xs mb-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                  nec sem eget justo varius posuere fringilla vel mi. Nullam
-                  congue purus ut nunc tincidunt maximus. Curabitur sed
-                  vestibulum ante.
-                </p>
-                <a className="text-green-600 inline-flex items-center cursor-pointer">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-                <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-                  <span className="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                      <circle cx={12} cy={12} r={3} />
-                    </svg>
-                    {Math.ceil(Math.random() * 1000)}
-                  </span>
-                  <span className="text-gray-400 inline-flex items-center leading-none text-sm">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
-                    </svg>
-                    {Math.ceil(Math.random() * 1000)}
-                  </span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
     </div>
   );
-}
+};
+
+export default Home;
