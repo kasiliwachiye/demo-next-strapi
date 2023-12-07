@@ -1,6 +1,6 @@
 import Content from "@/components/content";
 
-const About = () => {
+const Details = () => {
   return (
     <Content
       blogImageSrc="https://images.pexels.com/photos/11148259/pexels-photo-11148259.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -16,4 +16,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Details;
