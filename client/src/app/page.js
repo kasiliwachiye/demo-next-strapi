@@ -85,9 +85,9 @@ const Home = async () => {
         <div className="flex justify-center pb-4">
           <Link
             className="text-green-600 inline-flex items-center md:mb-2 lg:mb-0 hover:cursor-pointer"
-            href="/projects"
+            href="/blogs"
           >
-            View All Projects
+            View All Articles
             <svg
               className="w-4 h-4 ml-2"
               viewBox="0 0 24 24"
