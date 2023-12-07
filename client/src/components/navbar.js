@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-transparent">
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost text-xl">
-          Mediterranean Living
+          OPTIVEN LOGO
         </Link>
       </div>
       <div className="flex-none">

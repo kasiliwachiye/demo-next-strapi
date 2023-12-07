@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const Card = ({
-  category,
-  title,
-  summary,
-  imageSrc,
-  learnMoreLink,
+  projectRating,
+  projectName,
+  projectSummary,
+  projectImage,
+  projectLink,
   likes,
   comments,
 }) => {
@@ -14,23 +15,23 @@ export const Card = ({
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <Image
           className="lg:h-48 md:h-36 w-full object-cover object-center"
-          src={imageSrc}
+          src={projectImage}
           alt="blog"
           width={720}
           height={400}
         />
         <div className="p-6">
-          <h2 className="text-lg title-font font-medium text-gray-400 mb-1">
-            {title}
+          <h2 className="text-lg text-gray-400 mb-1">
+            {projectName}
           </h2>
-          <h1 className="text-sm font-medium text-gray-700">{category}</h1>
-          <p className="leading-relaxed mb-3">{summary}</p>
+          <h1 className="text-sm text-gray-700">{projectRating}</h1>
+          <p className="mb-3 text-xs">{projectSummary}</p>
           <div className="flex items-center flex-wrap">
-            <a
-              className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 hover:cursor-pointer"
-              href={learnMoreLink}
+            <Link
+              className="text-green-600 inline-flex items-center md:mb-2 lg:mb-0 hover:cursor-pointer"
+              href={projectLink}
             >
-              Learn More
+              View Project
               <svg
                 className="w-4 h-4 ml-2"
                 viewBox="0 0 24 24"
@@ -43,7 +44,7 @@ export const Card = ({
                 <path d="M5 12h14" />
                 <path d="M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
             <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
               <svg
                 className="w-4 h-4 mr-1"

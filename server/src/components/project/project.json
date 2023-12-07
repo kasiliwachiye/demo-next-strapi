@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_project_projects",
+  "info": {
+    "displayName": "Project",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "projectName": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 35
+    },
+    "projectSummary": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    }
+  }
+}
