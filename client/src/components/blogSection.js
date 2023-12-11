@@ -1,13 +1,11 @@
 "use client";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useEffect, useRef } from "react"; // Import useRef hook
-import { Card } from "./card";
-import config from "../../config";
 import Link from "next/link";
+import BlogCard from "@/components/blogCard";
 
-const FeaturedProjects = ({ featuredProjects }) => {
-  // Initialize GSAP and ScrollTrigger
+const BlogSection = ({ featuredBlogs }) => {
   gsap.registerPlugin(ScrollTrigger);
 
   const titleRef = useRef(null);
@@ -38,11 +36,11 @@ const FeaturedProjects = ({ featuredProjects }) => {
       );
     };
 
-    const cardAnimations = () => {
-      const cards = document.querySelectorAll(".project-card");
+    const blogCardAnimations = () => {
+      const blogCards = document.querySelectorAll(".blog-card");
 
       gsap.fromTo(
-        cards,
+        blogCards,
         {
           opacity: 0,
           y: 75,
@@ -53,12 +51,12 @@ const FeaturedProjects = ({ featuredProjects }) => {
           visibility: "visible",
           duration: 1,
           scrollTrigger: {
-            trigger: cards[0],
+            trigger: blogCards[0],
             start: "top bottom",
             end: "top center",
             toggleActions: "play none none reverse",
           },
-          stagger: 0.5,
+          stagger: 0.25,
         }
       );
     };
@@ -88,37 +86,29 @@ const FeaturedProjects = ({ featuredProjects }) => {
     };
 
     titleAnimation();
-    cardAnimations();
+    blogCardAnimations();
     viewAllLinkAnimation();
   }, []);
 
   return (
-    <div className="container px-5 pt-12 mx-auto">
+    <div className="container px-5 py-24 mx-auto">
       <h1
         ref={titleRef}
-        className="text-3xl font-bold my-4 md:text-4xl lg:text-5xl featured-projects-title"
+        className="text-3xl font-bold my-4 md:text-4xl lg:text-5xl"
       >
-        Featured Projects
+        Optiven in the news
       </h1>
       <div className="flex flex-wrap -m-4">
-        {featuredProjects.data.map((project, index) => (
-          <Card
-            key={project.id}
-            projectName={project.attributes.projectName}
-            projectRating={project.attributes.projectRating}
-            projectSummary={project.attributes.projectSummary}
-            projectImage={`${config.api}${project.attributes.projectImage.data.attributes.url}`}
-            projectLink={`/projects/${project.attributes.slug}`}
-            className="project-card"
-          />
+        {featuredBlogs.data.map((item) => (
+          <BlogCard key={item.id} item={item} className="blog-card" />
         ))}
       </div>
       <div className="flex justify-center pt-8">
         <Link
           className="text-green-600 inline-flex items-center md:mb-2 lg:mb-0 hover:cursor-pointer view-all-link"
-          href="/projects"
+          href="/blogs"
         >
-          View All Projects
+          View All Articles
           <svg
             className="w-4 h-4 ml-2"
             viewBox="0 0 24 24"
@@ -137,4 +127,4 @@ const FeaturedProjects = ({ featuredProjects }) => {
   );
 };
 
-export default FeaturedProjects;
+export default BlogSection;
