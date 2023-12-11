@@ -4,6 +4,7 @@ import fetchBlogs from "../../helpers/fetch-blogs";
 import fetchProjects from "../../helpers/fetch-projects";
 import BlogCard from "@/components/blogCard";
 import config from "../../config";
+import Hero from "@/components/hero";
 
 const Home = async () => {
   const [featuredBlogs, blogs] = await Promise.all([
@@ -17,23 +18,8 @@ const Home = async () => {
   ]);
 
   return (
-    <div className="">
-      <div
-        className="hero min-h-screen"
-        style={{
-          backgroundImage:
-            "url(https://images.pexels.com/photos/388415/pexels-photo-388415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
-        }}
-      >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-lg">
-            <h1 className="mb-5 text-5xl font-bold uppercase">
-              Explore Value-Added Properties for a Better Tomorrow.
-            </h1>
-          </div>
-        </div>
-      </div>
+    <div>
+      <Hero />
       <div className="container px-5 py-12 mx-auto">
         <h1 className="text-3xl font-bold my-4 md:text-4xl lg:text-5xl">
           Featured Projects
