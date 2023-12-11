@@ -22,8 +22,8 @@ const Hero = () => {
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-lg">
-          <h1 className="mb-5 text-5xl font-bold uppercase">
+        <div className="max-w-lg lg:max-w-4xl">
+          <h1 className="text-5xl mb-5 font-bold uppercase lg:text-7xl">
             Explore Value-Added Properties for a Better Tomorrow.
           </h1>
         </div>

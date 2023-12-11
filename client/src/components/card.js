@@ -8,9 +8,10 @@ export const Card = ({
   projectSummary,
   projectImage,
   projectLink,
+  className,
 }) => {
   return (
-    <div className="p-4 md:w-1/3">
+    <div className={`p-4 md:w-1/3 ${className || ""}`}>
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
         <Image
           className="lg:h-48 md:h-36 w-full object-cover object-center"
