@@ -1,6 +1,6 @@
 import config from "../config";
 
-const fetchProjects = async (params) => {
+const fetchBlogs = async (params) => {
   const reqOptions = {
     headers: {
       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
@@ -18,4 +18,4 @@ const fetchProjects = async (params) => {
   return response;
 };
 
-export default fetchProjects;
+export default fetchBlogs;
