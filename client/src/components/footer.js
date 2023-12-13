@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
+import logo from "../../public/optiven-logo-full.png";
 
 export const Footer = () => {
   return (
-    <div className="w-screen bg-base-300 px-4 pt-16 md:px-24 lg:px-8">
+    <div className="w-screen bg-secondary px-4 pt-16 md:px-24 lg:px-8">
       <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <a
@@ -11,38 +13,21 @@ export const Footer = () => {
             title="Company"
             className="inline-flex items-center"
           >
-            <svg
-              className="w-8 text-green-400"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeMiterlimit="10"
-              stroke="currentColor"
-              fill="none"
-            >
-              <rect x="3" y="1" width="7" height="12" />
-              <rect x="3" y="17" width="7" height="6" />
-              <rect x="14" y="1" width="7" height="6" />
-              <rect x="14" y="11" width="7" height="12" />
-            </svg>
-            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-              Optiven
-            </span>
+            <Image alt="logo" src={logo} width={200} height={70} />
           </a>
           <div className="mt-6 lg:max-w-sm">
-            <p className="text-xs text-gray-800">
+            <p className="text-sm text-white">
               Optiven Group is a leading brand in the African real estate
               sector. The Group’s main objective is to empower property
               investors and transform the Society.
             </p>
-            <p className="mt-4 text-xs text-gray-800">
+            <p className="mt-4 text-sm text-white">
               The Real Estate arm’s flagship product is transformed value added
               plots which are particularly enhanced to suit immediate
               residential settlement, commercial purposes and futuristic capital
               gain
             </p>
-            <p className="mt-4 text-xs text-gray-800">
+            <p className="mt-4 text-sm text-white">
               We have prime plots on sale in Kiambu, Malindi, Thika (Gatanga
               Road) , Machakos, Kitengela, Nyeri, Nanyuki, Kisumu, Vipingo, Naro
               Moru, Malindi, Konza and Kajiado.
@@ -59,7 +44,7 @@ export const Footer = () => {
               href="tel:+254790300300"
               aria-label="Our phone"
               title="Our phone"
-              className="transition-colors duration-300 text-xs text-green-400 hover:text-green-600"
+              className="transition-colors duration-300 text-xs text-white hover:text-green-600"
             >
               +254-790-300-300
             </a>
@@ -70,7 +55,7 @@ export const Footer = () => {
               href="mailto:info@optiven.co.ke"
               aria-label="Our email"
               title="Our email"
-              className="transition-colors duration-300 text-xs text-green-400 hover:text-green-600"
+              className="transition-colors duration-300 text-xs text-white hover:text-green-600"
             >
               info@optiven.co.ke
             </a>
@@ -83,7 +68,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               aria-label="Our address"
               title="Our address"
-              className="transition-colors duration-300 text-xs text-green-400 hover:text-green-600"
+              className="transition-colors duration-300 text-xs text-white hover:text-green-600"
             >
               Absa Towers Loita Street , 2nd Floor
             </a>
@@ -120,12 +105,12 @@ export const Footer = () => {
               </svg>
             </a>
           </div>
-          <p className="mt-4 text-xs text-gray-500">
+          <p className="mt-4 text-sm">
             We use cookies to ensure that we give you the best experience on our
             website. View Our{" "}
             <Link
               href={"https://www.optiven.co.ke/cookie-policy/"}
-              className="transition-colors duration-300 text-xs text-green-400 hover:text-green-600"
+              className="transition-colors duration-300 text-xs text-white hover:text-green-600"
             >
               Cookie Policy
             </Link>

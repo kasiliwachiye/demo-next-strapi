@@ -56,7 +56,9 @@ const BlogSection = ({ featuredBlogs }) => {
             end: "top center",
             toggleActions: "play none none reverse",
           },
-          stagger: 0.25,
+          stagger: {
+            amount: 0.5,
+          },
         }
       );
     };

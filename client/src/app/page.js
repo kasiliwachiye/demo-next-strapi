@@ -3,6 +3,7 @@ import fetchProjects from "../../helpers/fetch-projects";
 import Hero from "@/components/hero";
 import FeaturedProjects from "@/components/featuredProjects";
 import BlogSection from "@/components/blogSection";
+import Statistics from "@/components/statistics";
 
 const Home = async () => {
   const [featuredBlogs, blogs] = await Promise.all([
@@ -19,6 +20,7 @@ const Home = async () => {
     <div>
       <Hero />
       <FeaturedProjects featuredProjects={featuredProjects} />
+      <Statistics />
       <BlogSection featuredBlogs={featuredBlogs} />
     </div>
   );
