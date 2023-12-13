@@ -10,8 +10,8 @@ export const Navbar = () => {
           <Image
             alt="logo"
             src={logo}
-            width={120}
-            height={50}
+            width={180}
+            height={100}
           />
         </Link>
       </div>
